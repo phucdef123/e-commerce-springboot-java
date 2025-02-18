@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Shopdee - Admin Website</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="@{/css/style.css}" rel="stylesheet">
+        <!-- Add Select2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    </head>
+
+    <body style="background-color: rgb(248, 248, 248);">
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Sidebar (Aside) -->
+        <aside id="sidebar" class="col-lg-3 col-md-4 col-sm-12 bg-white position-fixed d-none d-md-block h-100 overflow-auto shadow-sm border-end">
+            <ul class="nav flex-column px-3 mx-3">
+                <li class="nav-item my-3 text-muted">
+                    <h3>DANH MỤC</h3>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center active" id="home-tab" data-bs-toggle="tab" href="#home">
+                        <i class="fas fa-home me-2"></i> Trang chủ
+                    </a>
+                </li>
+            
+                <li class="nav-item mt-3 text-muted">PRODUCTS</li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="productEdition-tab" data-bs-toggle="tab" href="#productEdition">
+                        <i class="fas fa-edit me-2"></i> Product Edition
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="productList-tab" data-bs-toggle="tab" href="#productList">
+                        <i class="fas fa-boxes me-2"></i> Product List
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="category-tab" data-bs-toggle="tab" href="/admin/category/index?tab=category">
+                        <i class="fas fa-tags me-2"></i> Category
+                    </a>
+                </li>
+            
+                <li class="nav-item mt-3 text-muted">USERS</li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="userEdition-tab" data-bs-toggle="tab" href="#userEdition">
+                        <i class="fas fa-user-edit me-2"></i> User Edition
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="userList-tab" data-bs-toggle="tab" href="#userList">
+                        <i class="fas fa-users me-2"></i> User List
+                    </a>
+                </li>
+            
+                <li class="nav-item mt-3 text-muted">ORDERS</li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="orderList-tab" data-bs-toggle="tab" href="#orderList">
+                        <i class="fas fa-shopping-cart me-2"></i> Order List
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    
+        <!-- Main Content (Article) -->
+        <article id="main-content" class="col-lg-9 col-md-8 col-sm-12 offset-lg-3 offset-md-4 p-3">
+            <div class="container card border-0 shadow-sm mb-4">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="menu">
+                        <a href="index.html" class="link">
+                        <span class="link-icon">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="192"
+                            height="192"
+                            fill="currentColor"
+                            viewBox="0 0 256 256"
+                            >
+                            <rect width="256" height="256" fill="none"></rect>
+                            <path
+                                d="M213.3815,109.61945,133.376,36.88436a8,8,0,0,0-10.76339.00036l-79.9945,72.73477A8,8,0,0,0,40,115.53855V208a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V115.53887A8,8,0,0,0,213.3815,109.61945Z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></path>
+                            </svg>
+                        </span>
+                        <span class="link-title">Home</span>
+                        </a>
+                        <a href="#" class="link">
+                        <span class="link-icon">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="192"
+                            height="192"
+                            fill="currentColor"
+                            viewBox="0 0 256 256"
+                            >
+                            <rect width="256" height="256" fill="none"></rect>
+                            <path
+                                d="M45.42853,176.99811A95.95978,95.95978,0,1,1,79.00228,210.5717l.00023-.001L45.84594,220.044a8,8,0,0,1-9.89-9.89l9.47331-33.15657Z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></path>
+                            <line
+                                x1="96"
+                                y1="112"
+                                x2="160"
+                                y2="112"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></line>
+                            <line
+                                x1="96"
+                                y1="144"
+                                x2="160"
+                                y2="144"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></line>
+                            </svg>
+                        </span>
+                        <span class="link-title">Chat</span>
+                        </a>
+                        <div class="container-search mt-1">
+                            <input type="text" name="text" class="input" required="" placeholder="Type to search...">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                                    <title>Search</title>
+                                    <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <a href="#" class="link" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                        <span class="link-icon">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="192"
+                            height="192"
+                            fill="currentColor"
+                            viewBox="0 0 256 256"
+                            >
+                            <rect width="256" height="256" fill="none"></rect>
+                            <circle
+                                cx="128"
+                                cy="96"
+                                r="64"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-miterlimit="10"
+                                stroke-width="16"
+                            ></circle>
+                            <path
+                                d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></path>
+                            </svg>
+                        </span>
+                        <span class="link-title">Profile</span>
+                        </a>
+                        <div class="button-logout mt-1 ms-1">
+                            <button class="Btn">
+                                <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+                                <div class="text">Logout</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="container card border-0 shadow-sm mb-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h2>Trang chủ</h2>
+                    <p>Đây là nội dung của trang chủ.</p>
+                </div>
+            </div> -->
+    
+            <!-- Content for Tabs -->
+            <div class="tab-content" id="mainContentTabContent">
+                <!-- Home Content -->
+                <div class="tab-pane fade show active" id="home">
+                    <div class=" p-3 rounded row">
+                        <div class="col-sm-7 bg-white rounded-3">
+                            <h5 class="ms-auto d-flex mt-3 justify-content-center">Tổng doanh thu</h5>
+                            <div class="w-25 ms-auto text-end p-1">
+                                <select name="" id="" class="form-select">
+                                    <option value="2024">2024</option>
+                                    <option value="2024">2023</option>
+                                    <option value="2024">2022</option>
+                                </select>
+                            </div>
+                            <canvas id="myChart" class="w-100"></canvas>
+                            <p class="text-end mt-3">Tổng: <span>100.000.000</span> VND</p>
+                        </div>
+                    
+                        <div class="col-sm-4 ms-auto rounded-3 bg-white d-flex justify-content-center align-items-center flex-column">
+                            <h5>Tổng số lượng</h5>
+                            <canvas id="donutChart" class="w-100"></canvas>
+                            <p class="text-end mt-4">Tổng: <span>10000</span></p>
+                        </div>
+                        <div class="bg-white p-3 mt-5 rounded">
+                            <canvas id="vipCustomersChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+    
+                <!-- Product Edition Content -->
+                <div class="tab-pane fade" id="productEdition">
+                    <div class="card border-0 mb-4">
+                        <div class="card-header d-flex align-items-center justify-content-between border-0 bg-white">
+                            <h5 class="mb-0">Thông tin sản phẩm</h5>
+                            <small class="text-muted float-end">Default label</small>
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="post">
+                                <div class="row">
+                                    <div class="col-sm-3 card mb-3 border-0">
+                                        <label class="custum-file-upload" for="file">
+                                            <div class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path fill="" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+                                            </div>
+                                            <div class="text">
+                                                <span>Upload image</span>
+                                            </div>
+                                            <input type="file" id="file" accept="image/*">
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input required="required" type="text">
+                                                    <span>Tên sản phẩm</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input required="required" type="number">
+                                                    <span>Giá sản phẩm</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1 mt-2">
+                                                <label class="checkbox-mod d-flex align-items-center">
+                                                    <input type="checkbox" id="discountCheck" data-bs-toggle="collapse" data-bs-target="#discountInputRow">
+                                                    <span class="checkmark"></span>
+                                                    <span class="ms-3">Áp dụng giảm giá</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="discountInputRow">
+                                            <div class="col-sm-10 offset-sm-1 mt-2">
+                                                <div class="inputbox">
+                                                    <input required="required" type="number">
+                                                    <span>Giá muốn giảm</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1 mt-2">
+                                                <select class="form-select border-0 bg-light">
+                                                    <option value="" selected disabled>Chọn loại sản phẩm</option>
+                                                    <option value="fruit">Trái cây</option>
+                                                    <option value="vegetable">Rau củ</option>
+                                                    <option value="meat">Thịt</option>
+                                                    <option value="fish">Cá</option>
+                                                    <option value="seafood">Hải sản</option>
+                                                    <option value="spice">Gia vị</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <select class="form-select select2-multiple bg-primary" multiple="multiple" aria-label="multiple select example">
+                                                    <option value="domestic" selected>Nội địa</option>
+                                                    <option value="import">Nhập khẩu</option>
+                                                    <option value="frozen">Đông lạnh</option>
+                                                    <option value="processed">Đã chế biến</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row mb-3 ">
+                                            <label class="col-sm-12 col-form-label " for="basic-default-message">Mô tả</label>
+                                            <div class="col-sm-12">
+                                                <textarea id="basic-default-message" class="form-control"
+                                                    placeholder="Nội dung mô tả sản phẩm"
+                                                    aria-label="Nội dung miêu tả video"
+                                                    aria-describedby="basic-icon-default-message2"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-end">
+                                            <div class="btn-group gap-1 col-sm-9">
+                                                <button type="button" class="btn btn-outline-primary">Create</button>
+                                                <button type="button" class="btn btn-outline-primary">Update</button>
+                                                <button type="button" class="btn btn-outline-primary">Delete</button>
+                                                <button type="reset" class="btn btn-outline-primary">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Product List Content -->
+                <div class="tab-pane fade" id="productList">
+                    <div class="card border-0 ">
+                        <h5 class="card-header bg-white border-0">10 rows</h5>
+                        <div class="card-body">
+                        	<div class="table-responsive text-nowrap">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Rate</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                    <tr>
+                                        <td>YhOT6FTC7HM</td>
+                                        <td>Albert Cook</td>
+                                        <td>10000</td>
+                                        <td>5.0 <i class="fa fa-star text-secondary"></i></td>
+                                        <td>
+                                            <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Khongphaigu</td>
+                                        <td>Barry Hunter</td>
+                                        <td>100000000</td>
+                                        <td>5.0 <i class="fa fa-star text-secondary"></i></td>
+                                        </td>
+                                        <td>
+                                            <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>aaaaa</td>
+                                        <td>Barry Hunter</td>
+                                        <td>100000000</td>
+                                        <td>5.0 <i class="fa fa-star text-secondary"></i></td>
+                                        </td>
+                                        <td>
+                                            <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>aaaaa</td>
+                                        <td>Barry Hunter</td>
+                                        <td>100000000</td>
+                                        <td>5.0 <i class="fa fa-star text-secondary"></i></td>
+                                        </td>
+                                        <td>
+                                            <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--Pagination Start-->
+                            
+                            <ul class="pagination d-flex justify-content-center " >
+                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                            </ul>
+                            
+                            <!--Pagination End-->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category Content -->
+
+                <div class="tab-pane fade" id="category">
+                    <div class="card border-0 mb-4">
+                        <h5 class="card-header border-0">Edit Category</h5>
+                        <div class="card-body row" style="background-color: rgb(248, 248, 248);">
+                            <div class="col-sm-6 bg-white me-5 rounded h-50">
+                                <div class="row mb-3">
+                                    <div class="col-sm-10 offset-sm-1 mt-4">
+                                        <div class="inputbox">
+                                            <input required="required" type="text" >
+                                            <span>Name</span>
+                                            <i></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end mb-4">
+                                    <button type="button" class="btn btn-primary text-white w-25 me-1">Create</button>
+                                    <button type="button" class="btn btn-outline-primary w-25 me-5">Update</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-5 bg-white rounded">
+                                <table class="table table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        <tr>
+                                            <td>1</td>
+                                            <td><span class="badge bg-info me-1">Trái cây</span></td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td><span class="badge bg-danger me-1">Nấm</span>
+                                            </td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td><span class="badge bg-primary me-1">Rau củ</span></td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td><span class="badge bg-info me-1">Chế biến sẵn</span>
+                                            </td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td><span class="badge bg-info me-1">Đóng gói</span>
+                                            </td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--Pagination Start-->
+                                
+                                <div class="d-flex justify-content-center my-4">
+                                    <div class="radio-input " style="width: 150px; height: 25px;">
+                                        <label>
+                                            <input value="value-1" name="value-radio" id="value-1" type="radio" checked="">
+                                            <span>1</span>
+                                        </label>
+                                        <label>
+                                            <input value="value-2" name="value-radio" id="value-2" type="radio">
+                                            <span>2</span>
+                                        </label>
+                                        <label>
+                                            <input value="value-3" name="value-radio" id="value-3" type="radio">
+                                            <span>3</span>
+                                        </label>
+                                        <label>
+                                            <input value="value-3" name="value-radio" id="value-3" type="radio">
+                                            <span>4</span>
+                                        </label>
+                                        <span class="selection"></span>
+                                    </div>
+                                </div>
+                                
+                                <!--Pagination End-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Edition Content -->
+                <div class="tab-pane fade" id="userEdition">
+                    <div class="card border-0 mb-4">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-sm-10 offset-sm-1 mt-2">
+                                    <div class="inputbox">
+                                        <input required="required" type="text">
+                                        <span>Username</span>
+                                        <i></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-10 offset-sm-1 mt-2">
+                                    <div class="inputbox">
+                                        <input required="required" type="password" >
+                                        <span>Password</span>
+                                        <i></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-5 offset-sm-1 mt-2">
+                                    <input type="email" class="form-control " placeholder="Email">
+                                </div>
+                                <div class="col-sm-5 mt-2">
+                                    <input type="text" class="form-control " placeholder="Fullname">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-10 offset-sm-1 mt-2">
+                                    <input type="text" class="form-control " placeholder="Address (1)">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-10 offset-sm-1 mt-2">
+                                    <input type="text" class="form-control " placeholder="Address (2)">
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-6 offset-sm-6 mt-3">
+                                    <button type="button" class="btn btn-primary text-white ms-5 col-sm-4">Update</button>
+                                    <button type="button" class="btn btn-outline-primary col-sm-4">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- User List Content -->
+                <div class="tab-pane fade" id="userList">
+                    <div class="card border-0 ">
+                        <h5 class="card-header bg-white border-0">10 rows</h5>
+                        <div class="card-body">
+                        	<div class="table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Fullname</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        <tr>
+                                            <td>CR7</td>
+                                            <td>7tadagia</td>
+                                            <td>Kim Ri Cha</td>
+                                            <td>cr7cha@gmail.com</td>
+                                            <td><span class="badge bg-info me-1">User</span></td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dinh2k2</td>
+                                            <td>caothutft</td>
+                                            <td>Nguyễn Văn Định</td>
+                                            <td>mailfbnvd1@gmail.com</td>
+                                            <td><span class="badge bg-info me-1">User</span>
+                                            </td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PhucVipPro</td>
+                                            <td>mothaiba</td>
+                                            <td>Đoàn Trường Phúc</td>
+                                            <td>phucvippro@gmail.com</td>
+                                            <td><span class="badge bg-primary me-1">Admin</span></td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>ThinhThanTho</td>
+                                            <td>0987654321</td>
+                                            <td>Phan Quốc Thịnh</td>
+                                            <td>khoccungmua4@gmail.com</td>
+                                            <td><span class="badge bg-info me-1">User</span>
+                                            </td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PhuocPhaPhach</td>
+                                            <td>haibabon</td>
+                                            <td>Nguyễn Thành Phước</td>
+                                            <td>lsam33345@gmail.com</td>
+                                            <td><span class="badge bg-info me-1">User</span>
+                                            </td>
+                                            <td>
+                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--Pagination Start-->
+                                
+                                <ul class="pagination d-flex justify-content-center mt-5" >
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                                </ul>
+                                
+                                <!--Pagination End-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Order Edition Content -->
+                <!-- <div class="tab-pane fade" id="orderEdition">
+                    <div class="card border-0 ">
+                        <h5 class="card-header bg-white border-0">10 rows</h5>
+                        <div class="card-body">
+                            <form action="" method="post">
+                                <div class="row">
+                                    <div class="col-sm-3 card mb-3 justify-content-center">
+                                        <img src="" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input required="required" type="text">
+                                                    <span>User ID</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input required="required" type="number">
+                                                    <span>Order Date</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input required="required" type="number">
+                                                    <span>Item name + price + quantity</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input required="required" type="number">
+                                                    <span>Item name + price + quantity</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input required="required" type="number">
+                                                    <span>Status</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row justify-content-end">
+                                            <button type="button" class="btn btn-outline-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- Order List Content -->
+                <div class="tab-pane fade" id="orderList">
+                    <div class="card border-0 ">
+                        <h5 class="card-header bg-white border-0">10 rows</h5>
+                        <div class="card-body">
+                            <!-- <select class="form-select bg-primary text-light border-0 shadow-sm" aria-label="Order status select">
+                                <option value="pending" class="bg-white text-dark" selected>
+                                    <i class="fas fa-clock"></i> Pending
+                                </option>
+                                <option value="shipped" class="bg-white text-dark">
+                                    <i class="fas fa-shipping-fast"></i> Shipped
+                                </option>
+                                <option value="delivered" class="bg-white text-dark">
+                                    <i class="fas fa-check-circle"></i> Delivered
+                                </option>
+                                <option value="canceled" class="bg-white text-dark">
+                                    <i class="fas fa-times-circle"></i> Canceled
+                                </option>
+                            </select> -->
+                            
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>User ID</th>
+                                            <th>Order Date</th>
+                                            <th>Total price</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        <tr>
+                                            <td>#12345</td>
+                                            <td>HIEUTHUHAI</td>
+                                            <td>1/1/2021</td>
+                                            <td>1000000</td>
+                                            <td>
+                                                <button class="cssbuttons-io-button" data-bs-toggle="modal" data-bs-target="#editOrderModal">
+                                                  Edit
+                                                  <div class="icon">
+                                                    <svg
+                                                      height="24"
+                                                      width="24"
+                                                      viewBox="0 0 24 24"
+                                                      xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                      <path d="M0 0h24v24H0z" fill="none"></path>
+                                                      <path
+                                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                        fill="currentColor"
+                                                      ></path>
+                                                    </svg>
+                                                  </div>
+                                                </button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>#12346</td>
+                                            <td>HIEUTHUHAI</td>
+                                            <td>1/1/2021</td>
+                                            <td>1000000</td>
+                                            <td>
+                                                <button class="cssbuttons-io-button" data-bs-toggle="modal" data-bs-target="#editOrderModal">
+                                                Edit
+                                                <div class="icon">
+                                                  <svg
+                                                    height="24"
+                                                    width="24"
+                                                    viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                  >
+                                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path
+                                                      d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                      fill="currentColor"
+                                                    ></path>
+                                                  </svg>
+                                                </div>
+                                              </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#12347</td>
+                                            <td>HIEUTHUHAI</td>
+                                            <td>1/1/2021</td>
+                                            <td>1000000</td>
+                                            <td>
+                                                <button class="cssbuttons-io-button" data-bs-toggle="modal" data-bs-target="#editOrderModal">
+                                                    Edit
+                                                    <div class="icon">
+                                                      <svg
+                                                        height="24"
+                                                        width="24"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                      >
+                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path
+                                                          d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                          fill="currentColor"
+                                                        ></path>
+                                                      </svg>
+                                                    </div>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#12348</td>
+                                            <td>HIEUTHUHAI</td>
+                                            <td>1/1/2021</td>
+                                            <td>1000000</td>
+                                            <td>
+                                                <button class="cssbuttons-io-button" data-bs-toggle="modal" data-bs-target="#editOrderModal">
+                                                    Edit
+                                                    <div class="icon">
+                                                      <svg
+                                                        height="24"
+                                                        width="24"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                      >
+                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path
+                                                          d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                          fill="currentColor"
+                                                        ></path>
+                                                      </svg>
+                                                    </div>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#12349</td>
+                                            <td>HIEUTHUHAI</td>
+                                            <td>1/1/2021</td>
+                                            <td>1000000</td>
+                                            <td>
+                                                <button class="cssbuttons-io-button" data-bs-toggle="modal" data-bs-target="#editOrderModal">
+                                                    Edit
+                                                    <div class="icon">
+                                                      <svg
+                                                        height="24"
+                                                        width="24"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                      >
+                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path
+                                                          d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                          fill="currentColor"
+                                                        ></path>
+                                                      </svg>
+                                                    </div>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </article>
+
+        <!-- Edit Modal Order Start -->
+
+        <div class="modal fade" id="editOrderModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chỉnh Sửa Đơn Hàng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/orders/update}" method="post">
+                            <input type="hidden" name="orderId" th:value="${order.id}"/>
+        
+                            <!-- Thông tin chung -->
+                            <div class="row">
+                                <div class="mb-3 col-sm-6 d-flex align-items-center gap-2">
+                                    <label class="form-label text-nowrap mb-0">Order ID:</label>
+                                    <p class="form-control-plaintext" th:text="${order.id}">#12345</p>
+                                </div>
+            
+                                <div class="mb-3 col-sm-6 d-flex align-items-center gap-1">
+                                    <label class="form-label text-nowrap mb-0">User ID:</label>
+                                    <p class="form-control-plaintext" th:text="${order.userId}">HIEUTHUHAI</p>
+                                </div>
+                            </div>
+        
+                            <div class="row">
+                                <div class="mb-3 col-sm-6 d-flex align-items-center gap-2">
+                                    <label class="form-label text-nowrap mb-0">Order Date:</label>
+                                    <p class="form-control-plaintext " th:text="${order.orderDate}">1/1/2025</p>
+                                </div>
+                            
+                                <div class="mb-3 col-sm-6 d-flex align-items-center gap-2">
+                                    <label class="form-label text-nowrap mb-0">Expected Delivery Date:</label>
+                                    <p class="form-control-plaintext " th:text="${order.expectedDeliveryDate}">3/1/2025</p>
+                                </div>
+                            </div>
+                            
+        
+                            <!-- Trạng thái đơn hàng -->
+                            <div class="mb-3">
+                                <label class="form-label">Status:</label>
+                                <select class="form-select" name="status">
+                                    <option value="Pending" th:selected="${order.status == 'Pending'}">Pending</option>
+                                    <option value="Shipped" th:selected="${order.status == 'Shipped'}">Shipped</option>
+                                    <option value="Delivered" th:selected="${order.status == 'Delivered'}">Delivered</option>
+                                    <option value="Canceled" th:selected="${order.status == 'Canceled'}">Canceled</option>
+                                </select>
+                            </div>
+        
+                            <!-- Danh sách sản phẩm -->
+                            <h5 class="mt-4">Chi Tiết Đơn Hàng</h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Số Lượng</th>
+                                        <th>Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="item : ${order.items}">
+                                        <td th:text="${item.productName}">Thanh long ruột đỏ</td>
+                                        <td th:text="${item.price}">25.000</td>
+                                        <td th:text="${item.quantity}">3
+                                            <!-- <input type="number" class="form-control quantity" name="quantities" th:value="${item.quantity}" data-price="${item.price}"> -->
+                                        </td>
+                                        <td class="subtotal" th:text="${item.price * item.quantity}">75.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Phí giao hàng: <span>25.000</span> VND</p>
+                            <h4 class="text-end">Tổng Cộng: <span id="totalAmount" th:text="${order.total}">75.000</span> VND</h4>
+        
+                            <!-- Nút điều khiển -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Edit Profile Start -->
+
+        <div class="modal fade" id="editProfileModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chỉnh Sửa Thông Tin Cá Nhân</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/profile/update}" method="post">
+                            <input type="hidden" name="id" th:value="${user.id}"/>
+        
+                            <!-- ID (Chỉ hiển thị) -->
+                            <div class="mb-3">
+                                <label class="form-label">ID:</label>
+                                <p class="form-control-plaintext" th:text="${user.id}"></p>
+                            </div>
+        
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label class="form-label">Mật khẩu:</label>
+                                <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu mới">
+                            </div>
+        
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label class="form-label">Email:</label>
+                                <input type="email" class="form-control" name="email" th:value="${user.email}" required>
+                            </div>
+        
+                            <!-- Họ Tên -->
+                            <div class="mb-3">
+                                <label class="form-label">Họ và Tên:</label>
+                                <input type="text" class="form-control" name="fullName" th:value="${user.fullName}" required>
+                            </div>
+        
+                            <!-- Nút Lưu -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Lưu Thay Đổi</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Search End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- Template Javascript -->
+    <script src="@{/js/main.js}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2-multiple').select2({
+                width: '100%', // Đặt chiều rộng của Select2
+                placeholder: 'Chọn nguồn gốc', // Placeholder
+                allowClear: true // Cho phép xóa các lựa chọn
+            });
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+        var myChart = new Chart(ctx, {
+            type: 'line',  
+            data : {
+                labels: labels,
+                datasets: [{
+                    label: 'Trái cây',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                },
+                {
+                    label: 'Rau củ',
+                    data: [50, 48, 60, 70, 52, 50, 38], 
+                    fill: false,
+                    borderColor: 'rgb(255, 99, 132)',
+                    tension: 0.1
+                },
+                {
+                    label: 'Nấm',
+                    data: [80, 58, 70, 80, 58, 60, 31], 
+                    fill: false,
+                    borderColor: 'rgb(66, 1, 12)',
+                    tension: 0.1
+                }
+                ]
+            }
+        });
+        var ctxDonut = document.getElementById('donutChart').getContext('2d');
+
+        var donutChart = new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Trái cây', 'Rau củ', 'Nấm'],
+                datasets: [{
+                    label: 'Số lượng',
+                    data: [300, 150, 100], // Dữ liệu số lượng sản phẩm bán ra
+                    backgroundColor: [
+                        'rgb(75, 192, 192)', // Xanh (Trái cây)
+                        'rgb(255, 99, 132)', // Đỏ (Rau củ)
+                        'rgb(66, 1, 12)' // Đỏ đậm (Nấm)
+                    ],
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+        var ctx = document.getElementById('vipCustomersChart').getContext('2d');
+
+        var vipCustomersData = [
+            { name: "Khách A", total: 10000000, firstDate: "2023-01-10", lastDate: "2024-02-05" },
+            { name: "Khách B", total: 8500000, firstDate: "2022-05-15", lastDate: "2024-01-20" },
+            { name: "Khách C", total: 8000000, firstDate: "2021-07-22", lastDate: "2024-02-01" },
+            { name: "Khách D", total: 7500000, firstDate: "2022-11-30", lastDate: "2024-01-10" },
+            { name: "Khách E", total: 7000000, firstDate: "2023-03-05", lastDate: "2024-01-29" },
+            { name: "Khách F", total: 6500000, firstDate: "2022-08-17", lastDate: "2024-02-03" },
+            { name: "Khách G", total: 6000000, firstDate: "2021-12-20", lastDate: "2024-02-02" },
+            { name: "Khách H", total: 5500000, firstDate: "2023-06-10", lastDate: "2024-01-25" },
+            { name: "Khách I", total: 5000000, firstDate: "2022-04-01", lastDate: "2024-01-28" },
+            { name: "Khách J", total: 4500000, firstDate: "2023-02-14", lastDate: "2024-01-30" }
+        ];
+
+        var vipCustomersChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: vipCustomersData.map(c => c.name), // Tên khách hàng
+                datasets: [{
+                    label: 'Tổng tiền đã mua (VNĐ)',
+                    data: vipCustomersData.map(c => c.total), // Tổng tiền
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                    borderColor: 'rgb(75, 192, 192)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y', // Biểu đồ ngang
+                scales: {
+                    x: { beginAtZero: true }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                var customer = vipCustomersData[tooltipItem.dataIndex];
+                                return `Tổng tiền: ${customer.total.toLocaleString()} VNĐ\nMua đầu: ${customer.firstDate}\nMua cuối: ${customer.lastDate}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+    </script>
+    
+    </body>
+
+</html>
