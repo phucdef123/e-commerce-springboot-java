@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Shopdee - Vegetable Website</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar start -->
+        <div class="container-fluid fixed-top">
+            <div class="container topbar bg-primary d-none d-lg-block">
+                <div class="d-flex justify-content-between">
+                    <div class="top-info ps-2">
+                        <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">Quận 12, Hồ Chí Minh</a></small>
+                        <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">shopdee1@gmail.com</a></small>
+                    </div>
+                    <div class="top-link pe-2">
+                        <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
+                        <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
+                        <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-0">
+                <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                    <a href="/" class="navbar-brand"><h1 class="text-primary display-6">Shopdee</h1></a>
+                    <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars text-primary"></span>
+                    </button>
+                    <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                        <div class="navbar-nav mx-auto">
+                            <a href="/" class="nav-item nav-link">Home</a>
+                            <a href="/shop" class="nav-item nav-link">Shop</a>
+                            <a href="#" class="nav-item nav-link">Tin tức</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang khác</a>
+                                <div class="dropdown-menu m-0 bg-secondary rounded-0">
+                                    <a href="#" class="dropdown-item">Ưu đãi</a>
+                                    <a href="#" class="dropdown-item">Danh sách cửa hàng</a>
+                                    <a href="#" class="dropdown-item">Chính sách</a>
+                                    <a href="#" class="dropdown-item">Đối tác</a>
+                                </div>
+                            </div>
+                            <a href="#" class="nav-item nav-link">Liên hệ</a> 
+                        </div>
+                        <div class="d-flex m-3 me-0 ms-auto">
+                            <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
+                            <a href="/cart" class="position-relative me-4 my-auto">
+                                <i class="fa fa-shopping-bag fa-2x"></i>
+                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                            </a>
+                            <!-- <p class="mt-2">Guest</p> -->
+                            <div class="nav-item dropdown position-relative">
+                                <a href="#" class="my-auto nav-link" data-bs-toggle="dropdown">
+                                    <i class="fas fa-user fa-2x" th:classappend="${session.user != null} ? 'text-danger' : 'text-primary'"></i>
+                                </a>
+                                <div class="dropdown-menu m-0 bg-secondary rounded-0" style="right: 0; left: auto;">
+                                	<span th:if="${session.user != null}" th:text="${session.user.fullname}" 
+          									class="d-block text-center w-100 py-1"></span>
+                                    <a th:if="${session.user == null}" href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng nhập</a>
+                                    <a th:if="${session.user != null}" href="/logout" class="dropdown-item">Đăng xuất</a>                                    
+                                    <a th:if="${session.user != null}" href="#" class="dropdown-item">Tài khoản</a>
+                                    <a th:if="${session.user != null and session.user.isAdmin}" href="/admin/home" class="dropdown-item">Trang admin</a>
+                                    <a href="#" class="dropdown-item">Trang shop</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar End -->
+
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Search End -->
+
+        <!-- Single Page Header start -->
+        <div class="container-fluid  py-5">
+            
+        </div>
+        <!-- Single Page Header end -->
+
+        <!-- Account Management Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center">
+                    <h4 class="text-primary">Quản lý tài khoản</h4>
+                    <h1 class="display-5 mb-5 text-dark">Thông tin tài khoản và đơn hàng</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="text-dark">Thông tin tài khoản</h3>
+                        <form action="/account/update-profile" th:object="${user}" method="post">
+						    <div class="mb-3">
+						        <label for="username" class="form-label">Tên đăng nhập</label>
+						        <input th:field="*{username}" type="text" class="form-control" id="username" placeholder="Tên đăng nhập" readonly="readonly">
+						    </div>
+						    <div class="mb-3">
+						        <label for="password" class="form-label">Mật khẩu</label>
+						        <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Nhập mật khẩu mới">
+						    </div>
+						    <div class="row mb-3">
+						        <div class="col-md-6">
+						            <label for="email" class="form-label">Email</label>
+						            <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="Email">
+						        </div>
+						        <div class="col-md-6">
+						            <label for="fullname" class="form-label">Họ và tên</label>
+						            <input th:field="*{fullname}" type="text" class="form-control" id="fullname" placeholder="Họ và tên">
+						        </div>
+						    </div>
+						    <div class="mb-3">
+						        <label for="address1" class="form-label">Địa chỉ 1</label>
+						        <input th:field="*{homeAddress}" type="text" class="form-control" id="address1" placeholder="Nhập địa chỉ 1">
+						    </div>
+						    <div class="mb-3">
+						        <label for="address2" class="form-label">Địa chỉ 2</label>
+						        <input th:field="*{workAddress}" type="text" class="form-control" id="address2" placeholder="Nhập địa chỉ 2">
+						    </div>
+						    <div class="row mt-2 d-flex justify-content-end ms-auto">
+						        <button type="submit" class="col-sm-4 btn btn-primary">Cập nhật thông tin</button>
+						        <a href="/forgot-password" class="col-sm-4">
+						            <button type="button" class="btn btn-outline-primary">Quên mật khẩu</button>
+						        </a>
+						    </div>
+						</form>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="text-dark">Tình trạng đơn hàng</h3>
+                        <div class="list-group">
+                        	<th:block th:each="item : ${orderList}">
+							    <a th:href="@{/account/order/edit/{id}(id=${item.id})}" class="list-group-item list-group-item-action" onclick="openEditOrder(event, this.getAttribute('href'))">
+							       <!-- data-bs-toggle="modal" data-bs-target="#editOrderModal" -->
+							       
+							        <div class="d-flex w-100 justify-content-between">
+							            <h5 class="mb-1">Đơn hàng: #<span th:text="${item.id}"></span></h5>
+							            <span th:switch="${item.status}" th:classappend="${item.status}">
+										    <span th:case="'Pending'" class="badge bg-warning">Chờ xử lý</span>
+										    <span th:case="'Shipped'" class="badge bg-primary">Đã giao hàng</span>
+										    <span th:case="'Delivered'" class="badge bg-success">Đã nhận hàng</span>
+										    <span th:case="'Canceled'" class="badge bg-danger">Đã hủy</span>
+										</span>
+							        </div>
+							        <p class="mb-1">Ngày đặt: <span th:text="${#dates.format(item.orderDate, 'dd/MM/yyyy')}"></span></p>
+							        <small class="fw-bold">Tổng tiền: 
+							            <span th:text="|${#numbers.formatDecimal(totalPriceMap[item.id], 0, 'COMMA', 0, 'POINT')} VND|"></span>
+							        </small>
+							    </a>
+							</th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Account Management End -->
+
+        <!-- Edit Order Modal -->
+		<div class="modal fade" id="editOrderModal" tabindex="-1">
+		    <div class="modal-dialog modal-lg">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <h5 class="modal-title">Chỉnh Sửa Đơn Hàng</h5>
+		                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+		            </div>
+		            <div class="modal-body">
+		            	<th:block th:if="${order != null}" th:object="${order}">
+		            		<input type="hidden" name="orderId" th:value="*{id}" />
+		
+			                <h5 class="mt-3">Thông tin đơn hàng</h5>
+			                <div class="row">
+			                    <div class="mb-3 col-sm-6">
+			                        <label class="form-label fw-bold">Mã đơn hàng:</label>
+			                        <p class="form-control-plaintext" th:text="'#' + *{id}">#12345</p>
+			                    </div>
+			                    <div class="mb-3 col-sm-6">
+			                        <label class="form-label fw-bold">Người đặt hàng:</label>
+			                        <p class="form-control-plaintext" th:text="*{user?.fullname}">Nguyễn Văn A</p>
+			                    </div>
+			                </div>
+			
+			                <div class="row">
+			                    <div class="mb-3 col-sm-6">
+			                        <label class="form-label fw-bold">Ngày đặt:</label>
+			                        <p class="form-control-plaintext" th:text="*{#dates.format(orderDate, 'dd/MM/yyyy')}">01/01/2025</p>
+			                    </div>
+			                    <div class="mb-3 col-sm-6">
+			                        <label class="form-label fw-bold">Ngày giao dự kiến:</label>
+			                        <p class="form-control-plaintext" th:text="*{#dates.format(deliveryDate, 'dd/MM/yyyy')}">03/01/2025</p>
+			                    </div>
+			                </div>
+			
+			                <h5 class="mt-3">Trạng thái đơn hàng</h5>
+			                <div class="mb-3">
+			                    <label class="form-label fw-bold">Trạng thái:</label>
+			                    <span th:switch="*{status}">
+			                        <span th:case="'Pending'" class="badge bg-warning">Chờ xử lý</span>
+			                        <span th:case="'Shipped'" class="badge bg-primary">Đang giao</span>
+			                        <span th:case="'Delivered'" class="badge bg-success">Đã nhận hàng</span>
+			                        <span th:case="'Canceled'" class="badge bg-danger">Đã hủy</span>
+			                        <span th:case="*" class="badge bg-secondary">Không xác định</span>
+			                    </span>
+			                </div>
+			
+			                <h5 class="mt-4">Chi Tiết Đơn Hàng</h5>
+			                <table class="table table-bordered">
+			                    <thead>
+			                        <tr>
+			                            <th>Tên Sản Phẩm</th>
+			                            <th>Giá (VND)</th>
+			                            <th>Số Lượng</th>
+			                            <th>Tổng (VND)</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <th:block th:each="item : ${odetailList}">
+	                                	<tr>
+	                                        <td th:text="${item.product.name}"></td>
+	                                        <td th:text="${#numbers.formatDecimal(item.product.price, 1, 'COMMA', 2, 'POINT')}"></td>
+	                                        <td th:text="${item.quantity}"></td>
+	                                        <td th:text="${#numbers.formatDecimal(item.product.price * item.quantity, 1, 'COMMA', 2, 'POINT')}" class="subtotal"></td>
+	                                    </tr>
+	                                </th:block> 
+			                    </tbody>
+			                </table>
+			
+			                <p >Phí giao hàng: <span th:text="*{#numbers.formatDecimal(shippingFee, 1, 'COMMA', 2, 'POINT')}"></span> VND</p>
+			                <h4 class="text-end">Tổng Cộng: <span th:text="${#numbers.formatDecimal(grandTotal, 1, 'COMMA', 2, 'POINT')}"></span> VND</h4>
+			
+			                <div class="modal-footer">
+			                	<th:block th:if="${order.status != 'Canceled'}">
+			                		<a th:href="@{/account/order/update/{id}(id=${order.id})}">
+				                    	<button class="btn btn-danger" >Hủy đơn hàng</button>
+				                    </a>
+			                	</th:block>		                	
+			                </div>
+		            	</th:block>
+		                
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+            <div class="container py-5">
+                <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
+                    <div class="row g-4">
+                        <div class="col-lg-3">
+                            <a href="#">
+                                <h1 class="text-primary mb-0">Shopdee</h1>
+                                <p class="text-secondary mb-0">Sản phẩm tươi</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="position-relative mx-auto">
+                                <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Your Email">
+                                <button type="submit" class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0;">Subscribe Now</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="d-flex justify-content-end pt-3">
+                                <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-light mb-3">Why People Like us!</h4>
+                            <p class="mb-4">Cung cấp rau củ và trái cây tươi ngon, đạt chuẩn an toàn, nguồn gốc rõ ràng. 
+                                Giao hàng nhanh, tiện lợi, đảm bảo chất lượng đến tay bạn!</p>
+                            <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex flex-column text-start footer-item">
+                            <h4 class="text-light mb-3">Shop Info</h4>
+                            <a class="btn-link" href="">About Us</a>
+                            <a class="btn-link" href="">Contact Us</a>
+                            <a class="btn-link" href="">Privacy Policy</a>
+                            <a class="btn-link" href="">Terms & Condition</a>
+                            <a class="btn-link" href="">Return Policy</a>
+                            <a class="btn-link" href="">FAQs & Help</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex flex-column text-start footer-item">
+                            <h4 class="text-light mb-3">Account</h4>
+                            <a class="btn-link" href="">My Account</a>
+                            <a class="btn-link" href="">Shop details</a>
+                            <a class="btn-link" href="">Shopping Cart</a>
+                            <a class="btn-link" href="">Wishlist</a>
+                            <a class="btn-link" href="">Order History</a>
+                            <a class="btn-link" href="">International Orders</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-light mb-3">Contact</h4>
+                            <p>Address: 12 Tô Ký, Quận 12, Thành phố Hồ Chí Minh</p>
+                            <p>Email: shopdee1@gmail.com</p>
+                            <p>Phone: +0123 4567 8910</p>
+                            <p>Payment Accepted</p>
+                            <img src="/img/payment.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Shopdee</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 my-auto text-center text-md-end text-white">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+    <script src="/js/tab-content.js"></script>
+    
+    <script th:inline="javascript">
+	    /* Lấy message từ Model và gán vào biến JavaScript */
+	    let serverMessage = [[${message}]];
+	</script>
+    </body>
+
+</html>

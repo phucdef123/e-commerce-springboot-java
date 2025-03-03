@@ -304,8 +304,26 @@
 }
 
 .fruite .fruite-item {
+	display: flex;
+    flex-direction: column;
     height: 100%;
     transition: 0.5s;
+}
+
+.fruite .fruite-item .p-4 {
+    flex-grow: 1; /* Phần này sẽ co giãn nhưng không làm thay đổi kích thước tổng thể */
+}
+
+.fruite .fruite-item p {
+    height: 100px; /* Điều chỉnh theo nhu cầu */
+    overflow: hidden;
+}
+
+.fruite .fruite-item h4 {
+    white-space: nowrap; /* Không cho xuống dòng */
+    overflow: hidden; /* Ẩn phần bị tràn */
+    text-overflow: ellipsis; /* Hiển thị dấu '...' nếu vượt quá chiều rộng */
+    max-width: 100%; /* Giới hạn chiều rộng để không làm vỡ layout */
 }
 
 .fruite .fruite-item:hover {
@@ -316,6 +334,8 @@
     overflow: hidden;
     transition: 0.5s;
     border-radius: 10px 10px 0 0;
+    display: block;
+    width: 100%;
 }
 
 .fruite .fruite-item .fruite-img img {
@@ -331,8 +351,26 @@
 
 /*** vesitable Start ***/
 .vesitable .vesitable-item {
+	display: flex;
+    flex-direction: column;
     height: 100%;
     transition: 0.5s;
+}
+
+.vesitable .vesitable-item .p-4 {
+    flex-grow: 1; /* Phần này sẽ co giãn nhưng không làm thay đổi kích thước tổng thể */
+}
+
+.vesitable .vesitable-item p {
+    height: 100px; /* Điều chỉnh theo nhu cầu */
+    overflow: hidden;
+}
+
+.vesitable .vesitable-item h4 {
+    white-space: nowrap; /* Không cho xuống dòng */
+    overflow: hidden; /* Ẩn phần bị tràn */
+    text-overflow: ellipsis; /* Hiển thị dấu '...' nếu vượt quá chiều rộng */
+    max-width: 100%; /* Giới hạn chiều rộng để không làm vỡ layout */
 }
 
 .vesitable .vesitable-item:hover {
@@ -885,20 +923,23 @@ aside .nav-link.active {
 /* From Uiverse.io by Yaya12085 */
 /* input upload file*/
 .custum-file-upload {
-    height: 100%;
+    height: 250px; /* Đặt chiều cao cố định */
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: space-between;
     gap: 20px;
     cursor: pointer;
     align-items: center;
     justify-content: center;
     border: 2px dashed #cacaca;
     background-color: rgba(255, 255, 255, 1);
-    padding: 1.5rem;
+    /*padding: 1.5rem;*/
     border-radius: 10px;
     box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+    background-size: cover; /* Hiển thị ảnh full */
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 .custum-file-upload .icon {
@@ -924,6 +965,15 @@ aside .nav-link.active {
 }
 
 .custum-file-upload input {
+    display: none;
+}
+
+.custum-file-upload.has-image .icon,
+.custum-file-upload.has-image .text {
+    display: none;
+}
+.custum-file-upload.has-new-image .icon,
+.custum-file-upload.has-new-image .text {
     display: none;
 }
 
@@ -1007,7 +1057,7 @@ aside .nav-link.active {
 }
 
 /* From Uiverse.io by Yaya12085 */
-/* pagination modal*/
+/* pagination modal
 .radio-input input {
     display: none;
 }
@@ -1073,7 +1123,7 @@ aside .nav-link.active {
 .radio-input label:nth-child(4):has(input:checked)~.selection {
     transform: translateX(300%);
 }
-
+*/
 /* From Uiverse.io by cssbuttons-io */
 /* Button delete */
 .button-delete button {

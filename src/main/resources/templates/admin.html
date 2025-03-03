@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Shopdee - Admin Website</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="/css/style.css" rel="stylesheet">
+        <!-- Add Select2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    </head>
+
+    <body style="background-color: rgb(248, 248, 248);">
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Sidebar (Aside) -->
+        <aside id="sidebar" class="col-lg-3 col-md-2 col-sm-12 bg-white position-fixed d-none d-md-block h-100 overflow-auto shadow-sm border-end">
+            <ul class="nav flex-column px-3 mx-3">
+                <li class="nav-item my-3 text-muted">
+                    <h3>DANH MỤC</h3>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center active" id="home-tab" data-target="home" href="#">
+                        <i class="fas fa-home me-2"></i> Trang chủ
+                    </a>
+                </li>
+            
+                <li class="nav-item mt-3 text-muted">PRODUCTS</li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" data-target="productEdition" href="#">
+                        <i class="fas fa-edit me-2"></i> Product Edition
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="productList-tab" data-target="productList" href="#">
+                        <i class="fas fa-boxes me-2"></i> Product List
+                    </a>
+                </li>
+                <li class="nav-item">
+				    <a class="nav-link d-flex align-items-center" data-target="category" href="#">
+					    <i class="fas fa-tags me-2"></i> Category
+					</a>
+				</li>
+       
+                <li class="nav-item mt-3 text-muted">USERS</li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="userEdition-tab" data-target="userEdition" href="#">
+                        <i class="fas fa-user-edit me-2"></i> User Edition
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="userList-tab" data-target="userList" href="#">
+                        <i class="fas fa-users me-2"></i> User List
+                    </a>
+                </li>
+            
+                <li class="nav-item mt-3 text-muted">ORDERS</li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" id="orderList-tab" data-target="orderList" href="#">
+                        <i class="fas fa-shopping-cart me-2"></i> Order List
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    
+        <!-- Main Content (Article) -->
+        <article id="main-content" class="col-lg-9 col-md-8 col-sm-12 offset-lg-3 offset-md-4 p-3">
+            <div class="container card border-0 shadow-sm mb-4">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="menu">
+                        <a href="/" class="link">
+                        <span class="link-icon">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="192"
+                            height="192"
+                            fill="currentColor"
+                            viewBox="0 0 256 256"
+                            >
+                            <rect width="256" height="256" fill="none"></rect>
+                            <path
+                                d="M213.3815,109.61945,133.376,36.88436a8,8,0,0,0-10.76339.00036l-79.9945,72.73477A8,8,0,0,0,40,115.53855V208a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V115.53887A8,8,0,0,0,213.3815,109.61945Z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></path>
+                            </svg>
+                        </span>
+                        <span class="link-title">Home</span>
+                        </a>
+                        <a href="#" class="link">
+                        <span class="link-icon">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="192"
+                            height="192"
+                            fill="currentColor"
+                            viewBox="0 0 256 256"
+                            >
+                            <rect width="256" height="256" fill="none"></rect>
+                            <path
+                                d="M45.42853,176.99811A95.95978,95.95978,0,1,1,79.00228,210.5717l.00023-.001L45.84594,220.044a8,8,0,0,1-9.89-9.89l9.47331-33.15657Z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></path>
+                            <line
+                                x1="96"
+                                y1="112"
+                                x2="160"
+                                y2="112"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></line>
+                            <line
+                                x1="96"
+                                y1="144"
+                                x2="160"
+                                y2="144"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></line>
+                            </svg>
+                        </span>
+                        <span class="link-title">Chat</span>
+                        </a>
+                        <div class="container-search mt-1">
+                            <input type="text" name="text" class="input" required="" placeholder="Type to search...">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                                    <title>Search</title>
+                                    <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <a href="#" class="link" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                        <span class="link-icon">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="192"
+                            height="192"
+                            fill="currentColor"
+                            viewBox="0 0 256 256"
+                            >
+                            <rect width="256" height="256" fill="none"></rect>
+                            <circle
+                                cx="128"
+                                cy="96"
+                                r="64"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-miterlimit="10"
+                                stroke-width="16"
+                            ></circle>
+                            <path
+                                d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="16"
+                            ></path>
+                            </svg>
+                        </span>
+                        <span class="link-title">Profile</span>
+                        </a>
+                        
+                        <div class="button-logout mt-1 ms-1">
+                        	<a href="/logout">
+	                            <button class="Btn">
+	                                <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+	                                <div class="text">Logout</div>
+	                            </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="container card border-0 shadow-sm mb-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h2>Trang chủ</h2>
+                    <p>Đây là nội dung của trang chủ.</p>
+                </div>
+            </div> -->
+    
+            <!-- Content for Tabs -->
+            <div class="tab-content" id="mainContentTabContent">
+                <!-- Home Content -->
+                <div class="content-section " id="home" >
+                    <div class=" p-3 rounded row">
+                        <div class="col-sm-7 bg-white rounded-3">
+                            <h5 class="ms-auto d-flex mt-3 justify-content-center">Tổng doanh thu</h5>
+                            <!-- <div class="w-25 ms-auto text-end p-1">
+                                <select name="" id="" class="form-select">
+                                    <option value="2024">2024</option>
+                                    <option value="2024">2023</option>
+                                    <option value="2024">2022</option>
+                                </select>
+                            </div> -->
+                            <canvas id="myChart" class="w-100"></canvas>
+                            <p class="text-end mt-3">
+							    Tổng: <span th:text="${#numbers.formatDecimal(totalRevenue, 0, 'COMMA', 0, 'POINT')} + ' VND'"></span>
+							</p>
+                        </div>
+                    
+                        <div class="col-sm-4 ms-auto rounded-3 bg-white d-flex justify-content-center align-items-center flex-column">
+                            <h5 class="mt-1">Tổng số lượng đã bán 2024</h5>
+                            <canvas id="donutChart" class="w-100"></canvas>
+                            <p class="text-end mt-4">Tổng: <span th:text="${totalQuantitySold}"></span></p>
+                        </div>
+                        <div class="bg-white p-3 mt-5 rounded">
+                            <canvas id="vipCustomersChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+    
+                <!-- Product Edition Content -->
+                <div class="content-section " id="productEdition" style="display: none;">
+                    <div class="card border-0 mb-4">
+                        <div class="card-header d-flex align-items-center justify-content-between border-0 bg-white">
+                            <h5 class="mb-0">Thông tin sản phẩm</h5>
+                            <small class="text-muted float-end">Default label</small>
+                        </div>
+                        <div class="card-body">
+                            <form th:object="${itemPro}" method="post" enctype="multipart/form-data" autocomplete="off">
+                                <div class="row">
+                                	<input th:field="*{id}"  type="hidden" name="id">
+                                    <div class="col-sm-3 card mb-3 border-0">
+                                        <label class="custum-file-upload" for="file" th:classappend="${itemPro.image != null and itemPro.image != ''} ? 'has-image'">
+                                            <div class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path fill="" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+                                            </div>
+                                            <div class="text">
+                                                <span>Upload image</span>
+                                            </div>
+                                            <img id="preview" th:src="@{${itemPro.image}}" alt="" style="max-height: 250px">                                            
+                                            <input name="imageFile" type="file" id="file" accept="image/*">
+                                            <input type="hidden" name="image" th:value="${itemPro.image}">
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="col-sm-9">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input th:field="*{name}" required="required" type="text">
+                                                    <span>Tên sản phẩm</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1">
+                                                <div class="inputbox">
+                                                    <input th:field="*{price}" required="required" type="number">
+                                                    <span>Giá sản phẩm</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1 mt-2">
+                                                <label class="checkbox-mod d-flex align-items-center">
+                                                    <input th:field="*{available}" type="checkbox" id="discountCheck" data-bs-toggle="collapse" data-bs-target="#discountInputRow">
+                                                    <span class="checkmark"></span>
+                                                    <span class="ms-3">Còn hàng</span>
+                                                </label>
+                                            </div>
+                                        </div><!-- 
+                                        <div class="collapse" id="discountInputRow">
+                                            <div class="col-sm-10 offset-sm-1 mt-2">
+                                                <div class="inputbox">
+                                                    <input required="required" type="number">
+                                                    <span>Giá muốn giảm</span>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1 mt-2">
+                                                <select th:field="*{category.categoryId}" class="form-select border-0 bg-light">
+                                                    <option value="" selected disabled>Chọn loại sản phẩm</option>
+                                                    <option th:each="cate : ${cateList}"
+								                        th:value="${cate.categoryId}"
+								                        th:text="${cate.categoryName}">
+							                        </option>
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10 offset-sm-1 mt-2">
+                                                <select th:field="*{itemTypeIds}" multiple="multiple" class="form-select select2-multiple">
+												    <option th:each="proType : ${itemTypeList}"
+												            th:value="${proType.typeId}"
+												            th:text="${proType.typeName}"
+												            th:selected="${itemPro?.itemTypeIds != null and #lists.contains(itemPro.itemTypeIds, proType.typeId)}">
+												    </option>
+															
+												    
+												</select>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="mb-3">
+                                        <div class="row mb-3 ">
+                                            <label class="col-sm-12 col-form-label " for="basic-default-message">Mô tả</label>
+                                            <div class="col-sm-12">
+                                                <textarea th:field="*{description}" id="basic-default-message" class="form-control"
+                                                    placeholder="Nội dung mô tả sản phẩm"
+                                                    aria-label="Nội dung miêu tả video"
+                                                    aria-describedby="basic-icon-default-message2"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-end">
+                                            <div class="btn-group gap-1 col-sm-9">
+                                                <button type="submit" formaction="/admin/product/create" class="btn btn-outline-primary ">Create</button>
+                                                <button type="submit" formaction="/admin/product/update" class="btn btn-outline-primary ">Update</button>
+                                                <button type="submit" th:formaction="@{/admin/product/delete/{id}(id=${itemPro.id ?: '0'})}" class="btn btn-outline-primary ">Delete</button>
+                                                <button type="reset" onclick="location.reload()" class="btn btn-outline-primary">Reset</button>                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Product List Content -->
+                <div class="content-section " id="productList" style="display: none;">
+                    <div class="card border-0 ">
+                        <h5 class="card-header bg-white border-0">10 rows</h5>
+                        <div class="card-body">
+                        	<div class="table-responsive text-nowrap">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><a href="/admin/product/sort?field=id">ID <i class="fas fa-sort"></i></a></th>
+                                        <th><a href="/admin/product/sort?field=category.categoryName">Category <i class="fas fa-sort"></i></a></th>
+                                        <th><a href="/admin/product/sort?field=name">Name <i class="fas fa-sort"></i></a></th>
+                                        <th><a href="/admin/product/sort?field=price">Price <i class="fas fa-sort"></i></a></th>
+                                        <th><a href="/admin/product/sort?field=rating">Rate <i class="fas fa-sort"></i></a></th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                	<th:block th:each="item: ${pagePro.content}">
+                                		<tr>
+	                                        <td th:text="${#strings.length(item.id) > 8 ? #strings.substring(item.id, 0, 8) + '...' : item.id}"></td>
+	                                        <td>
+											    <span th:switch="${item.category.categoryId}" >
+											        <span th:case="1" class="badge bg-primary" th:text="${item.category.categoryName}"></span>
+											        <span th:case="2" class="badge bg-success" th:text="${item.category.categoryName}"></span>
+											        <span th:case="3" class="badge bg-warning" th:text="${item.category.categoryName}"></span>
+											        <span th:case="10" class="badge bg-danger" th:text="${item.category.categoryName}"></span>
+											    </span>
+											</td>
+	                                        <td th:text="${item.name}"></td>
+	                                        <td th:text="${item.price}"></td>
+	                                        <td><span th:text="${item.rating}"></span><i class="fa fa-star text-secondary"></i></td>
+	                                        <td>
+	                                            <div class="dropup"> <!-- Thêm lớp dropup -->
+	                                                <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+	                                                    <i class="fas fa-ellipsis-v"></i>
+	                                                </button>
+	                                                <ul class="dropdown-menu dropdown-menu-end">
+	                                                    <li><a class="dropdown-item edit-btn" th:href="@{|/admin/product/edit/${item.id}|}" data-target="productEdition"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+	                                                    <li><a class="dropdown-item" th:href="@{|/admin/product/delete/${item.id}|}"><i class="bx bx-trash me-1"></i> Delete</a></li>
+	                                                </ul>
+	                                            </div>
+	                                        </td>
+	                                    </tr>
+                                	</th:block>                                    
+                                </tbody>
+                            </table>
+                            <!--Pagination Start-->
+
+                            <ul class="pagination d-flex justify-content-center mt-5" >
+                                    <li class="page-item rounded-start">
+                                    	<a class="page-link" th:href="@{${pagePro.number == 0 ? '#' : '/admin/product/page?p=0'}}">
+                                    	<i class="fas fa-angle-double-left"></i></a>
+                                   	</li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pagePro.number == 0 ? '#' : '/admin/product/page?p=' + (pagePro.number - 1)}}">
+                                    	<i class="fas fa-angle-left"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pagePro.number == pagePro.totalPages - 1 ? '#' : '/admin/product/page?p=' + (pagePro.number + 1)}}">
+                                    	<i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pagePro.number == pagePro.totalPages - 1 ? '#' : '/admin/product/page?p=' + (pagePro.totalPages - 1)}}">
+                                    	<i class="fas fa-angle-double-right"></i></a>
+                                    </li>
+                                </ul>
+                            <!--Pagination End-->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category Content -->
+
+                <div class="content-section" id="category" style="display: none;">
+                    <div class="card border-0 mb-4">
+                        <h5 class="card-header border-0">Edit Category</h5>
+                        <div class="card-body row" style="background-color: rgb(248, 248, 248);">
+                            <form th:object="${itemCate}" method="post" class="col-sm-6 bg-white me-5 rounded h-50">
+                                <input type="hidden" th:field="*{categoryId}">
+                                <div class="row mb-3">
+                                    <div class="col-sm-10 offset-sm-1 mt-4">
+                                        <div class="inputbox">
+                                            <input th:field="*{categoryName}" required="required" type="text" >
+                                            <span>Name</span>
+                                            <i></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end mb-4">
+                                    <button type="submit" formaction="/admin/category/create" class="btn btn-primary text-white w-25 me-1 ">Create</button>
+                                    <button type="submit" formaction="/admin/category/update" class="btn btn-outline-primary w-25 me-5">Update</button>
+                                </div>
+                            </form>
+                            <div class="col-sm-5 bg-white rounded">
+                                <table class="table table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                            	<a href="/admin/category/sort?field=categoryId">Id <i class="fas fa-sort"></i></a>   	
+                                           	</th>
+                                            <th>
+                                            	<a href="/admin/category/sort?field=categoryName">Name <i class="fas fa-sort"></i></a>                                            	
+                                            </th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+	                                    <th:block th:each="item: ${pageCate.content}">
+		                                    <tr th:if="${pageCate.content == 0}"> 
+		                                    	<td colspan="6">Không có nội dung nào</td>
+		                                    </tr>
+	                                    	<tr>
+	                                            <td th:text="${item.categoryId}">1</td>
+	                                            <td th:text="${item.categoryName}">Trái cây</td><!-- <span class="badge bg-info me-1"></span> -->
+	                                            <td>
+	                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+	                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+	                                                        <i class="fas fa-ellipsis-v"></i>
+	                                                    </button>
+	                                                    <ul class="dropdown-menu dropdown-menu-end">
+	                                                        <li><a class="dropdown-item" th:href="@{|/admin/category/edit/${item.categoryId}|}"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+	                                                        <li><a class="dropdown-item" th:href="@{|/admin/category/delete/${item.categoryId}|}"><i class="bx bx-trash me-1"></i> Delete</a></li>
+	                                                    </ul>
+	                                                </div>
+	                                            </td>
+	                                        </tr>
+	                                    	
+	                                    </th:block>
+                                        
+                                    </tbody>
+                                </table>
+                                <!--Pagination Start-->
+                                <!-- 
+                                <div class="d-flex justify-content-center my-4">
+								    <div class="radio-input" style="width: 300px; height: 25px;">
+										<label>
+										    <input type="radio" name="value-radio" id="first-page" th:disabled="${page.number == 0}" />
+										    <span><a th:href="@{${page.number == 0 ? '#' : '/admin/category/page?p=0'}}"><i class="bi bi-arrow-bar-left"></i></a> </span>
+										</label>
+										<label>
+										    <input type="radio" name="value-radio" id="previous-page" th:disabled="${page.number == 0}" />
+										    <span><a th:href="@{${page.number == 0 ? '#' : '/admin/category/page?p=' + (page.number - 1)}}"><i class="bi bi-arrow-left-short"></i></a> </span>
+										</label>										
+										<label>
+										    <input type="radio" name="value-radio" id="next-page" th:disabled="${page.number == page.totalPages - 1}" />
+										    <span><a th:href="@{${page.number == page.totalPages - 1 ? '#' : '/admin/category/page?p=' + (page.number + 1)}}"><i class="bi bi-arrow-right-short"></i></a> </span>
+										</label>
+										<label>
+										    <input type="radio" name="value-radio" id="last-page" th:disabled="${page.number == page.totalPages - 1}" />
+										    <span><a th:href="@{${page.number == page.totalPages - 1 ? '#' : '/admin/category/page?p=' + (page.totalPages - 1)}}"><i class="bi bi-arrow-bar-right"></i></a> </span>
+										</label>								
+								        <span class="selection"></span>
+								    </div>
+								</div> -->
+								
+								<ul class="pagination d-flex justify-content-center mt-5" >
+                                    <li class="page-item rounded-start">
+                                    	<a class="page-link" th:href="@{${pageCate.number == 0 ? '#' : '/admin/category/page?p=0'}}">
+                                    	<i class="fas fa-angle-double-left"></i></a>
+                                   	</li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageCate.number == 0 ? '#' : '/admin/category/page?p=' + (pageCate.number - 1)}}">
+                                    	<i class="fas fa-angle-left"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageCate.number == pageCate.totalPages - 1 ? '#' : '/admin/category/page?p=' + (pageCate.number + 1)}}">
+                                    	<i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageCate.number == pageCate.totalPages - 1 ? '#' : '/admin/category/page?p=' + (pageCate.totalPages - 1)}}">
+                                    	<i class="fas fa-angle-double-right"></i></a>
+                                    </li>
+                                </ul>
+                                
+                                <!--Pagination End-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Edition Content -->
+                <div class="content-section " id="userEdition" style="display: none;">
+                    <div class="card border-0 mb-4">
+                        <div class="card-body">
+                        	<form th:object="${itemUser}" method="post">
+	                            <div class="col-sm-10 offset-sm-1 my-2">
+                                    <div class="inputbox">
+                                        <input th:field="*{username}" type="text">
+                                        <span>Username</span>
+                                        <i></i>
+                                    </div>
+                                </div>               
+                                <input th:field="*{password}" type="hidden" >	                                        	                           
+	                            <div class="row mb-3">
+	                                <div class="col-sm-5 offset-sm-1 mt-2">
+	                                    <input th:field="*{email}" type="email" class="form-control " placeholder="Email">
+	                                </div>
+	                                <div class="col-sm-5 mt-2">
+	                                    <input th:field="*{fullname}" type="text" class="form-control " placeholder="Fullname">
+	                                </div>
+	                            </div>
+	                            <div class="row mb-3">
+	                                <div class="col-sm-10 offset-sm-1 mt-2">
+	                                    <input th:field="*{homeAddress}" type="text" class="form-control " placeholder="Address (1)">
+	                                </div>
+	                            </div>
+	                            <div class="row mb-3">
+	                                <div class="col-sm-10 offset-sm-1 mt-2">
+	                                    <input th:field="*{workAddress}" type="text" class="form-control " placeholder="Address (2)">
+	                                </div>
+	                            </div>
+	                            <div class="row mb-3">
+                                    <div class="col-sm-10 offset-sm-1 mt-2">
+                                        <label class="checkbox-mod d-flex align-items-center">
+                                            <input th:field="*{activated}" type="checkbox" id="activedCheck">
+                                            <span class="checkmark"></span>
+                                            <span class="ms-3">Còn hoạt động</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 offset-sm-1 d-flex justify-content-end">
+                                    <button type="submit" formaction="/admin/user/update" class="btn btn-primary text-white w-25 me-1 ">Update</button>
+                                    <button type="submit" th:formaction="@{/admin/user/delete/{username}(username=${itemUser.username ?: '0'})}" class="btn btn-outline-primary w-25 me-5">Delete</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- User List Content -->
+                <div class="content-section " id="userList" style="display: none;">
+                    <div class="card border-0 ">
+                        <h5 class="card-header bg-white border-0">10 rows</h5>
+                        <div class="card-body">
+                        	<div class="table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th><a href="/admin/user/sort?field=username">Username <i class="fas fa-sort"></i></a> </th>
+                                            <th><a href="/admin/user/sort?field=password">Password <i class="fas fa-sort"></i></a> </th>
+                                            <th><a href="/admin/user/sort?field=fullname">Fullname <i class="fas fa-sort"></i></a> </th>
+                                            <th><a href="/admin/user/sort?field=email">Email <i class="fas fa-sort"></i></a> </th>
+                                            <th><a href="/admin/user/sort?field=admin">Role <i class="fas fa-sort"></i></a> </th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                    	<th:block th:each="item: ${pageUser.content}">
+                                    		<tr>
+	                                            <td th:text="${item.username}"></td>
+	                                            <td th:text="${item.password}"></td>
+	                                            <td th:text="${item.fullname}"></td>
+	                                            <td th:text="${item.email}"></td>
+	                                            <td>
+	                                            	<span th:if="${item.admin}" class="badge bg-primary me-1">Admin</span>
+    												<span th:if="${!item.admin}" class="badge bg-info me-1">User</span>
+	                                            </td>
+	                                            <td>
+	                                                <div class="dropup"> <!-- Thêm lớp dropup -->
+	                                                    <button type="button" class="btn btn-link btn-sm text-dark p-0" data-bs-toggle="dropdown" aria-expanded="false">
+	                                                        <i class="fas fa-ellipsis-v"></i>
+	                                                    </button>
+	                                                    <ul class="dropdown-menu dropdown-menu-end">
+	                                                        <li><a class="dropdown-item edit-btn" th:href="@{|/admin/user/edit/${item.username}|}"  data-target="userEdition"><i class="bx bx-edit-alt me-1"></i> Edit</a></li>
+	                                                        <li><a class="dropdown-item" th:href="@{|/admin/user/delete/${item.username}|}"><i class="bx bx-trash me-1"></i> Delete</a></li>
+	                                                    </ul>
+	                                                </div>
+	                                            </td>
+	                                        </tr>
+                                    	</th:block>                                      
+                                    </tbody>
+                                </table>
+                                <!--Pagination Start-->
+                                
+                                <ul class="pagination d-flex justify-content-center mt-5" >
+                                    <li class="page-item rounded-start">
+                                    	<a class="page-link" th:href="@{${pageUser.number == 0 ? '#' : '/admin/user/page?p=0'}}">
+                                    	<i class="fas fa-angle-double-left"></i></a>
+                                   	</li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageUser.number == 0 ? '#' : '/admin/user/page?p=' + (pageUser.number - 1)}}">
+                                    	<i class="fas fa-angle-left"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageUser.number == pageUser.totalPages - 1 ? '#' : '/admin/user/page?p=' + (pageUser.number + 1)}}">
+                                    	<i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageUser.number == pageUser.totalPages - 1 ? '#' : '/admin/user/page?p=' + (pageUser.totalPages - 1)}}">
+                                    	<i class="fas fa-angle-double-right"></i></a>
+                                    </li>
+                                </ul>
+                                
+                                <!--Pagination End-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Order List Content -->
+                <div class="content-section " id="orderList" style="display: none;">
+                    <div class="card border-0 ">
+                        <h5 class="card-header bg-white border-0">10 rows</h5>
+                        <div class="card-body">                            
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                        	<th><a href="/admin/order/sort?field=status">Status <i class="fas fa-sort"></i></a></th>
+                                            <th><a href="/admin/order/sort?field=id">ID <i class="fas fa-sort"></i></a></th>          
+                                            <th><a href="/admin/order/sort?field=user.username">Username <i class="fas fa-sort"></i></a></th>
+                                            <th><a href="/admin/order/sort?field=orderDate">Order Date <i class="fas fa-sort"></i></a></th>
+                                            <th><a href="/admin/order/sort?field=totalPrice">Total Price <i class="fas fa-sort"></i></a></th>                                           
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+	                                    <th:block th:each="item : ${pageOrder.content}">
+	                                    	<tr>
+	                                            
+	                                            <td>
+												    <span th:class="${item.status == 'Pending' ? 'badge bg-warning' :
+												                     item.status == 'Shipped' ? 'badge bg-primary' :
+												                     item.status == 'Delivered' ? 'badge bg-success' :
+												                     item.status == 'Canceled' ? 'badge bg-danger' : 'badge bg-secondary'}"
+												          th:text="${item.status}">
+												    </span>
+												</td>
+												<td th:text="${item.id}"></td>
+	                                            <td th:text="${item.user.username}"></td> 
+	                                            <td th:text="${#dates.format(item.orderDate, 'dd/MM/yyyy')}"></td>
+	                                            <td th:text="${#numbers.formatDecimal(totalPriceMap[item.id], 1, 'COMMA', 2, 'POINT')}"></td>	                                            
+	                                            <td>
+		                                            <a th:href="@{|/admin/order/edit/${item.id}|}" th:attr="data-id=${item.id}" class="edit-link">
+		                                                <button class="cssbuttons-io-button">
+		                                                  Edit
+		                                                  <div class="icon">
+		                                                    <svg
+		                                                      height="24"
+		                                                      width="24"
+		                                                      viewBox="0 0 24 24"
+		                                                      xmlns="http://www.w3.org/2000/svg"
+		                                                    >
+		                                                      <path d="M0 0h24v24H0z" fill="none"></path>
+		                                                      <path
+		                                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+		                                                        fill="currentColor"
+		                                                      ></path>
+		                                                    </svg>
+		                                                  </div>
+		                                                </button>
+	                                                </a>
+	                                            </td>	                                            
+	                                        </tr>
+	                                    </th:block>                                                                                
+                                    </tbody>
+                                </table>
+                                 <!--Pagination Start-->
+
+                                <ul class="pagination d-flex justify-content-center mt-5" >
+                                    <li class="page-item rounded-start">
+                                    	<a class="page-link" th:href="@{${pageOrder.number == 0 ? '#' : '/admin/order/page?p=0'}}">
+                                    	<i class="fas fa-angle-double-left"></i></a>
+                                   	</li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageOrder.number == 0 ? '#' : '/admin/order/page?p=' + (pageOrder.number - 1)}}">
+                                    	<i class="fas fa-angle-left"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageOrder.number == pageOrder.totalPages - 1 ? '#' : '/admin/order/page?p=' + (pageOrder.number + 1)}}">
+                                    	<i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                    	<a class="page-link" th:href="@{${pageOrder.number == pageOrder.totalPages - 1 ? '#' : '/admin/order/page?p=' + (pageOrder.totalPages - 1)}}">
+                                    	<i class="fas fa-angle-double-right"></i></a>
+                                    </li>
+                                </ul>
+                                
+                                <!--Pagination End-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </article>
+
+        <!-- Edit Modal Order Start -->
+
+        <div class="modal fade" id="editOrderModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chỉnh Sửa Đơn Hàng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:object="${itemOrder}"  th:action="@{/admin/order/update}" method="post">
+                            <!-- Thông tin chung -->
+                            <div class="row">
+                                <div class="mb-3 col-sm-6 d-flex align-items-center gap-2">
+                                    <label class="form-label text-nowrap mb-0">Order ID:</label>
+                                    <p th:text="*{id}" class="form-control-plaintext" ></p>
+                                    <input type="hidden" th:field="*{id}" />
+                                </div>
+            
+                                <div class="mb-3 col-sm-6 d-flex align-items-center gap-1">
+                                    <label class="form-label text-nowrap mb-0">User ID:</label>
+                                    <p th:text="*{user?.username}" class="form-control-plaintext" ></p>
+                                    <input type="hidden" th:field="*{user.username}" />
+                                    
+                                </div>
+                            </div>
+        
+                            <div class="row">
+                                <div class="mb-3 col-sm-6 d-flex align-items-center gap-2">
+                                    <label class="form-label text-nowrap mb-0">Order Date:</label>
+                                    <p th:text="*{orderDate}" class="form-control-plaintext " ></p>
+                                    <input type="hidden" th:field="*{orderDate}" />
+                                </div>
+                            
+                                <div class="mb-3 col-sm-6 d-flex align-items-center gap-2">
+                                    <label class="form-label text-nowrap mb-0">Expected Delivery Date:</label>
+                                    <p th:text="*{deliveryDate}" class="form-control-plaintext " ></p>
+                                    <input type="hidden" th:field="*{deliveryDate}" />
+                                </div>
+                            </div>                            
+        
+                            <!-- Trạng thái đơn hàng -->
+                            <div class="mb-3">
+                                <label class="form-label">Status:</label>
+                                <select class="form-select" th:field="*{status}">
+                                    <option value="Pending" >Pending</option>
+                                    <option value="Shipped" >Shipped</option>
+                                    <option value="Delivered" >Delivered</option>
+                                    <option value="Canceled" >Canceled</option>
+                                </select>
+                            </div>
+        
+                            <!-- Danh sách sản phẩm -->
+                            <h5 class="mt-4">Chi Tiết Đơn Hàng</h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Số Lượng</th>
+                                        <th>Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+	                                <th:block th:each="item : ${odetailList}">
+	                                	<tr>
+	                                        <td th:text="${item.product.name}"></td>
+	                                        <td th:text="${#numbers.formatDecimal(item.product.price, 1, 'COMMA', 2, 'POINT')}"></td>
+	                                        <td th:text="${item.quantity}"></td>
+	                                        <td th:text="${#numbers.formatDecimal(item.product.price * item.quantity, 1, 'COMMA', 2, 'POINT')}" class="subtotal"></td>
+	                                    </tr>
+	                                </th:block>                                                                    
+                                </tbody>
+                            </table>
+                            <input type="hidden" th:field="*{shippingFee}" />                     
+                            <p >Phí giao hàng: <span th:text="*{#numbers.formatDecimal(shippingFee, 1, 'COMMA', 2, 'POINT')}"></span> VND</p>
+                            <h4 class="text-end">Tổng Cộng: <span th:text="${#numbers.formatDecimal(grandTotal, 1, 'COMMA', 2, 'POINT')}"></span> VND</h4>
+        
+                            <!-- Nút điều khiển -->
+                            <div class="modal-footer">
+                                <button type="submit" formaction="/admin/order/update" class="btn btn-primary">Lưu</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Edit Profile Start -->
+
+        <div class="modal fade" id="editProfileModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chỉnh Sửa Thông Tin Cá Nhân</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/admin/user/update-profile" th:object="${session.user}" method="post">
+                            <input type="hidden" name="id" />
+        
+                            <!-- ID (Chỉ hiển thị) -->
+                            <div class="mb-3">
+                                <label class="form-label">Username:</label>
+                                <p th:text="${userCr.username}" class="form-control-plaintext" ></p>
+                                <input type="hidden" th:field="${userCr.username}">
+                            </div>
+        
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label class="form-label">Mật khẩu:</label>
+                                <input th:field="${userCr.password}" type="password" class="form-control" name="password" placeholder="Nhập mật khẩu mới">
+                            </div>
+        
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label class="form-label">Email:</label>
+                                <input th:field="${userCr.email}" type="email" class="form-control" name="email" required>
+                            </div>
+        
+                            <!-- Họ Tên -->
+                            <div class="mb-3">
+                                <label class="form-label">Họ và Tên:</label>
+                                <input th:field="${userCr.fullname}" type="text" class="form-control" name="fullName" required>
+                            </div>
+        
+                            <!-- Nút Lưu -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Lưu Thay Đổi</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Search End -->
+        
+        <!-- Modal thông báo -->
+
+			<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
+			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			            </div>
+			            <div class="modal-body">
+			                <span th:text="${message}">Đây là nội dung thông báo</span>
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			        
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+    <script src="/js/tab-content.js"></script>
+    
+    <script th:inline="javascript">
+	    /*<![CDATA[*/
+	    var openEditModal = /*[[${openEditModal}]]*/ false; 
+	    console.log("openEditModal:", openEditModal); // Sẽ in ra true nếu flash attribute là true
+	
+	    if (openEditModal && !sessionStorage.getItem("modalOpened")) {
+	        let modalElement = document.getElementById("editOrderModal");
+	        if (modalElement) {
+	            let modal = new bootstrap.Modal(modalElement);
+	            modal.show();
+	            sessionStorage.setItem("modalOpened", "true");
+	        }
+	    }
+	
+	    // Xóa sessionStorage khi nhấn Edit để mở lại modal
+	    document.querySelectorAll(".edit-link").forEach(link => {
+	        link.addEventListener("click", function () {
+	            sessionStorage.removeItem("modalOpened");
+	        });
+	    });
+	    /*]]>*/
+	</script>
+    
+    <script>
+        $(document).ready(function() {
+            $('.select2-multiple').select2({
+                width: '100%', // Đặt chiều rộng của Select2
+                placeholder: 'Chọn nguồn gốc', // Placeholder
+                allowClear: true // Cho phép xóa các lựa chọn
+            });
+        });
+    </script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var revenueData = /*[[${revenueData}]]*/ [];
+
+        // Lấy danh sách các tháng
+        const labels = [...new Set(revenueData.map(item => item.month))];
+
+        // Lấy danh sách các danh mục (category)
+        const categories = [...new Set(revenueData.map(item => item.category))];
+
+        // Tạo dataset cho Chart.js
+        const datasets = categories.map(category => ({
+            label: category,
+            data: labels.map(month => {
+                const record = revenueData.find(d => d.month === month && d.category === category);
+                return record ? record.revenue : 0;
+            }),
+            fill: false,
+            borderColor: getRandomColor(),
+            tension: 0.1
+        }));
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: datasets
+            }
+        });
+
+        function getRandomColor() {
+            return `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+
+        /*]]>*/
+    </script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var categorySales = /*[[${categorySales}]]*/ [];
+
+        var labels2 = [];
+        var data = [];
+        var backgroundColors = ['rgb(75, 192, 192)', 'rgb(255, 99, 132)', 'rgb(66, 1, 12)', 'rgb(255, 205, 86)', 'rgb(54, 162, 235)'];
+
+        categorySales.forEach((item, index) => {
+            labels2.push(item.category);
+            data.push(item.totalQuantity);
+        });
+
+        var ctxDonut = document.getElementById('donutChart').getContext('2d');
+        var donutChart = new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+                labels: labels2,
+                datasets: [{
+                    label: 'Số lượng sản phẩm đã bán',
+                    data: data,
+                    backgroundColor: backgroundColors.slice(0, labels2.length),
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+        /*]]>*/
+    </script>
+    <script th:inline="javascript">
+	    var vipCustomersData = /*[[${vipCustomers}]]*/ [];
+	    
+	    var ctx = document.getElementById('vipCustomersChart').getContext('2d');
+	    
+	    
+	    var vipCustomersChart = new Chart(ctx, {
+	        type: 'bar',
+	        data: {
+	            labels: vipCustomersData.map(c => c.name),
+	            datasets: [{
+	                label: 'Tổng tiền đã mua (VNĐ)',
+	                data: vipCustomersData.map(c => c.totalSpent),
+	                backgroundColor: 'rgba(75, 192, 192, 0.7)',
+	                borderColor: 'rgb(75, 192, 192)',
+	                borderWidth: 1
+	            }]
+	        },
+	        options: {
+	            indexAxis: 'y',
+	            scales: {
+	                x: { beginAtZero: true }
+	            },
+	            plugins: {
+	                tooltip: {
+	                    callbacks: {
+	                        label: function(tooltipItem) {
+	                            var customer = vipCustomersData[tooltipItem.dataIndex];
+	                            return `Tổng tiền: ${customer.totalSpent.toLocaleString()} VNĐ\nMua đầu: ${customer.firstPurchase}\nMua cuối: ${customer.lastPurchase}`;
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    });
+	</script>
+
+    
+    </body>
+
+</html>
